@@ -195,9 +195,10 @@ height:340px;
 
 </section>
 
-<audio id="bgMusic" loop>
-<source src="maula-mere.mp3" type="audio/mp3">
+<audio id="bgMusic" loop preload="auto">
+  <source src="maula-mere.mp3" type="audio/mpeg">
 </audio>
+
 
 <script>
 const noBtn=document.getElementById("noBtn");
@@ -240,15 +241,23 @@ noBtn.style.top=newTop+"px";
 }
 
 /* YES CLICK */
-yesBtn.addEventListener("click",()=>{
-dialogText.textContent="I knew you'd say yes 💕";
-setTimeout(()=>{
-dialogSection.classList.remove("active");
-letterSection.classList.add("active");
-startTypewriter();
-music.play();
-},1000);
+yesBtn.addEventListener("click", () => {
+
+  dialogText.textContent = "I knew you'd say yes 💕";
+
+  // Start from specific timestamp (in seconds)
+  music.currentTime = 42;   // ← change this to where you want it to start
+
+  music.play().catch(err => console.log("Audio blocked:", err));
+
+  setTimeout(() => {
+    dialogSection.classList.remove("active");
+    letterSection.classList.add("active");
+    startTypewriter();
+  }, 1000);
+
 });
+
 
 /* TYPEWRITER */
 function startTypewriter(){
