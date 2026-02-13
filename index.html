@@ -3,288 +3,272 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Be My Valentine 💖</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Will You Be My Valentine? 💖</title>
 
 <style>
-
-* {
-    box-sizing: border-box;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    padding: 20px;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
-    text-align: center;
-    color: white;
-    overflow-x: hidden;
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#fbc2eb,#a6c1ee);
+min-height:100vh;
+overflow-x:hidden;
 }
 
-/* ================= POPUP ================= */
-
-.popup {
-    position: fixed;
-    inset: 0;
-    margin: auto;
-    width: 90%;
-    max-width: 400px;
-    height: fit-content;
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(20px);
-    padding: 30px;
-    border-radius: 25px;
-    box-shadow: 0 0 40px rgba(255,255,255,0.4);
-    z-index: 10;
+section{
+display:none;
+min-height:100vh;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:20px;
 }
 
-.popup h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
+section.active{
+display:flex;
 }
 
-.popup button {
-    margin: 10px;
-    padding: 12px 24px;
-    border-radius: 40px;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.3s ease;
+/* ================= DIALOG ================= */
+
+.popup{
+width:460px;
+height:320px;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(15px);
+border-radius:25px;
+padding:20px;
+text-align:center;
+box-shadow:0 0 30px rgba(255,255,255,0.4);
+position:relative;
+overflow:hidden;
 }
 
-.yes {
-    background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
-    color: white;
+.popup h2{
+height:60px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+transition:0.3s;
 }
 
-.yes:hover {
-    transform: scale(1.1);
+.button-container{
+position:absolute;
+top:80px;
+bottom:20px;
+left:0;
+width:100%;
 }
 
-.no {
-    background: rgba(255,255,255,0.25);
-    color: white;
+.popup button{
+position:absolute;
+width:130px;
+height:48px;
+border-radius:40px;
+border:none;
+font-size:16px;
+cursor:pointer;
+transition:left 0.25s ease, top 0.25s ease;
 }
 
-/* ================= CONGRATS ================= */
-
-.congrats {
-    font-size: 22px;
-    margin-top: 40px;
-    font-family: 'Playfair Display', serif;
-    display: none;
+.yes{
+left:40px;
+bottom:0;
+background:linear-gradient(135deg,#fbc2eb,#a6c1ee);
+color:white;
 }
 
-/* ================= GALLERY ================= */
-
-.gallery {
-    margin-top: 40px;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
+.no{
+right:40px;
+bottom:0;
+background:rgba(255,255,255,0.3);
+color:white;
 }
 
-/* Top & Bottom rows */
-.gallery-row {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
+/* ================= LETTER ================= */
+
+#letterSection{
+padding:40px 20px 80px;
 }
 
-/* Center row */
-.center-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
+.photo-grid{
+width:100%;
+max-width:900px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+margin-bottom:50px;
+justify-items:center;
 }
 
-/* Side columns */
-.side-photos {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.polaroid{
+background:white;
+padding:12px 12px 35px;
+box-shadow:0 15px 25px rgba(0,0,0,0.25);
+width:100%;
+max-width:220px;
 }
 
-/* Polaroid */
-.gallery img {
-    width: 120px;
-    height: 140px;
-    object-fit: cover;
-    padding: 8px 8px 25px 8px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    transform: rotate(-3deg);
-    transition: 0.3s ease;
+.polaroid:nth-child(1){ transform:rotate(-6deg); }
+.polaroid:nth-child(2){ transform:rotate(4deg); }
+.polaroid:nth-child(3){ transform:rotate(-3deg); }
+.polaroid:nth-child(4){ transform:rotate(5deg); }
+.polaroid:nth-child(5){ transform:rotate(-4deg); }
+.polaroid:nth-child(6){ transform:rotate(3deg); }
+
+.polaroid img{
+width:100%;
+aspect-ratio:1/1;
+object-fit:cover;
+display:block;
 }
 
-.gallery img:nth-child(even) {
-    transform: rotate(4deg);
+.letter{
+max-width:600px;
+width:100%;
+background:rgba(255,255,255,0.9);
+padding:30px;
+border-radius:20px;
+box-shadow:0 0 30px rgba(255,255,255,0.6);
 }
 
-.gallery img:hover {
-    transform: scale(1.05) rotate(0deg);
+#typewriter{
+white-space:pre-wrap;
+line-height:1.6;
+margin-top:10px;
 }
 
-/* Letter */
-.letter-frame {
-    background: rgba(255,255,255,0.2);
-    padding: 30px;
-    border-radius: 25px;
-    backdrop-filter: blur(15px);
-    width: 100%;
-    max-width: 500px;
+/* MOBILE */
+@media(max-width:700px){
+
+.photo-grid{
+grid-template-columns:repeat(2,1fr);
+gap:20px;
 }
 
-.letter-frame h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
+.polaroid{
+max-width:160px;
 }
 
-#typewriter {
-    font-size: 16px;
-    min-height: 100px;
+.popup{
+width:95%;
+height:340px;
 }
 
-/* ================= RESPONSIVE BREAKPOINTS ================= */
-
-@media (min-width: 768px) {
-
-    .popup h1 {
-        font-size: 28px;
-    }
-
-    .gallery img {
-        width: 140px;
-        height: 160px;
-    }
-
-    #typewriter {
-        font-size: 17px;
-    }
 }
-
-@media (min-width: 1024px) {
-
-    .gallery img {
-        width: 150px;
-        height: 170px;
-    }
-
-    .letter-frame {
-        padding: 50px;
-    }
-
-    #typewriter {
-        font-size: 18px;
-    }
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- POPUP -->
-<div class="popup" id="popup">
-    <h1>Will you be my Valentine? 💖</h1>
-    <button class="yes" onclick="sayYes()">Yes 💘</button>
-    <button class="no" id="noBtn">No 💔</button>
+<section id="dialogSection" class="active">
+<div class="popup">
+<h2 id="dialogText">Will you be my Valentine? 💖</h2>
+
+<div class="button-container" id="buttonArea">
+<button class="yes" id="yesBtn">Yes 💕</button>
+<button class="no" id="noBtn">No 💔</button>
 </div>
 
-<div class="congrats" id="congrats">
-    Congrats you made the right choice 💖✨
+</div>
+</section>
+
+<section id="letterSection">
+
+<div class="photo-grid">
+<div class="polaroid"><img src="https://picsum.photos/400?1"></div>
+<div class="polaroid"><img src="https://picsum.photos/400?2"></div>
+<div class="polaroid"><img src="https://picsum.photos/400?3"></div>
+<div class="polaroid"><img src="https://picsum.photos/400?4"></div>
+<div class="polaroid"><img src="https://picsum.photos/400?5"></div>
+<div class="polaroid"><img src="https://picsum.photos/400?6"></div>
 </div>
 
-<!-- GALLERY -->
-<div class="gallery" id="gallery">
-
-    <!-- TOP -->
-    <div class="gallery-row">
-        <img src="https://picsum.photos/200?random=1">
-        <img src="https://picsum.photos/200?random=2">
-        <img src="https://picsum.photos/200?random=3">
-        <img src="https://picsum.photos/200?random=4">
-        <img src="https://picsum.photos/200?random=5">
-        <img src="https://picsum.photos/200?random=6">
-        <img src="https://picsum.photos/200?random=7">
-    </div>
-
-    <!-- CENTER -->
-    <div class="center-row">
-
-        <div class="side-photos">
-            <img src="https://picsum.photos/200?random=8">
-            <img src="https://picsum.photos/200?random=9">
-            <img src="https://picsum.photos/200?random=10">
-        </div>
-
-        <div class="letter-frame">
-            <h2>To My Love 💗</h2>
-            <p id="typewriter"></p>
-        </div>
-
-        <div class="side-photos">
-            <img src="https://picsum.photos/200?random=11">
-            <img src="https://picsum.photos/200?random=12">
-            <img src="https://picsum.photos/200?random=13">
-        </div>
-
-    </div>
-
-    <!-- BOTTOM -->
-    <div class="gallery-row">
-        <img src="https://picsum.photos/200?random=14">
-        <img src="https://picsum.photos/200?random=15">
-        <img src="https://picsum.photos/200?random=16">
-        <img src="https://picsum.photos/200?random=17">
-        <img src="https://picsum.photos/200?random=18">
-        <img src="https://picsum.photos/200?random=19">
-        <img src="https://picsum.photos/200?random=20">
-    </div>
-
+<div class="letter">
+<h2>My Love ❤️</h2>
+<p id="typewriter"></p>
 </div>
+
+</section>
+
+<audio id="bgMusic" loop>
+<source src="maula-mere.mp3" type="audio/mp3">
+</audio>
 
 <script>
+const noBtn=document.getElementById("noBtn");
+const yesBtn=document.getElementById("yesBtn");
+const dialogText=document.getElementById("dialogText");
+const dialogSection=document.getElementById("dialogSection");
+const letterSection=document.getElementById("letterSection");
+const music=document.getElementById("bgMusic");
+const buttonArea=document.getElementById("buttonArea");
 
-// Moving No Button
-const noBtn = document.getElementById("noBtn");
+const noMessages=[
+"No isn't an option 😌",
+"Try again 😉",
+"You sure about that? 🤨",
+"Still thinking? 🥺",
+"I'll keep asking 💖"
+];
 
-noBtn.addEventListener("mouseenter", () => {
-    const x = Math.random() * (window.innerWidth - 100);
-    const y = Math.random() * (window.innerHeight - 50);
-    noBtn.style.position = "fixed";
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+let noIndex=0;
+
+/* NO MOVES ON CLICK */
+noBtn.addEventListener("click",(e)=>{
+e.preventDefault();
+moveButton();
+dialogText.textContent=noMessages[noIndex];
+noIndex=(noIndex+1)%noMessages.length;
 });
 
-// Yes click
-function sayYes() {
-    document.getElementById("popup").style.display = "none";
-    document.getElementById("congrats").style.display = "block";
-    document.getElementById("gallery").style.display = "flex";
-    typeWriter();
+function moveButton(){
+
+const areaRect=buttonArea.getBoundingClientRect();
+const btnWidth=noBtn.offsetWidth;
+const btnHeight=noBtn.offsetHeight;
+
+let newLeft=Math.random()*(areaRect.width-btnWidth);
+let newTop=Math.random()*(areaRect.height-btnHeight);
+
+noBtn.style.left=newLeft+"px";
+noBtn.style.top=newTop+"px";
 }
 
-// Typewriter
-const text = "You are my favorite memory, my happiest thought, and my most beautiful dream. Every moment with you feels like magic, and I can't wait to create forever with you. 💕";
-let i = 0;
+/* YES CLICK */
+yesBtn.addEventListener("click",()=>{
+dialogText.textContent="I knew you'd say yes 💕";
+setTimeout(()=>{
+dialogSection.classList.remove("active");
+letterSection.classList.add("active");
+startTypewriter();
+music.play();
+},1000);
+});
 
-function typeWriter() {
-    if (i < text.length) {
-        document.getElementById("typewriter").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeWriter, 40);
-    }
+/* TYPEWRITER */
+function startTypewriter(){
+const text=`From the moment you came into my life,
+everything became softer, brighter, warmer.
+
+You are my favorite thought,
+my safest place,
+and my forever Valentine. 💖`;
+
+let i=0;
+function type(){
+if(i<text.length){
+document.getElementById("typewriter").textContent+=text.charAt(i);
+i++;
+setTimeout(type,40);
 }
-
+}
+type();
+}
 </script>
 
 </body>
