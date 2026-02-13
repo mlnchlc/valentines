@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Will You Be My Valentine, Now and Forever? 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -13,10 +14,15 @@ box-sizing:border-box;
 }
 
 body{
-font-family:'Poppins',sans-serif;
+font-family:'Quicksand', sans-serif;
 background:linear-gradient(135deg,#fbc2eb,#a6c1ee);
 min-height:100vh;
 overflow-x:hidden;
+}
+
+h2{
+font-family:'Playfair Display', serif;
+letter-spacing:0.5px;
 }
 
 section{
@@ -54,6 +60,9 @@ align-items:center;
 justify-content:center;
 text-align:center;
 transition:0.3s;
+font-weight:500;
+font-size:22px;
+color:#4a4a4a;
 }
 
 .button-container{
@@ -130,16 +139,17 @@ display:block;
 .letter{
 max-width:600px;
 width:100%;
-background:rgba(255,255,255,0.9);
-padding:30px;
-border-radius:20px;
-box-shadow:0 0 30px rgba(255,255,255,0.6);
+background:rgba(255,255,255,0.92);
+padding:35px;
+border-radius:24px;
+box-shadow:0 10px 40px rgba(0,0,0,0.08);
 }
 
 #typewriter{
 white-space:pre-wrap;
-line-height:1.6;
-margin-top:10px;
+line-height:1.8;
+font-size:17px;
+color:#444;
 }
 
 /* MOBILE */
@@ -210,7 +220,9 @@ const music=document.getElementById("bgMusic");
 const buttonArea=document.getElementById("buttonArea");
 
 const noMessages=[
+"Ooye pagli 😠",
 "No isn't an option 😌",
+"Kaise ni banegi be 💦",
 "Try again 😉",
 "You sure about that? 🤨",
 "Still thinking? 🥺",
@@ -267,6 +279,12 @@ everything became softer, brighter, warmer.
 I just relive our moments everytime 
 something like this comes up,
 
+From thinking about how to pass,
+How to do timepass,
+
+Now our parents say 
+Aur kitna hoga timepass?
+
 You are my favorite thought,
 my safest place,
 and my forever Valentine. 💖`;
@@ -276,7 +294,7 @@ function type(){
 if(i<text.length){
 document.getElementById("typewriter").textContent+=text.charAt(i);
 i++;
-setTimeout(type,40);
+setTimeout(type,50);
 }
 }
 type();
